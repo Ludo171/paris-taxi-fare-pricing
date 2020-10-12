@@ -8,7 +8,10 @@ const setExpressApp = () => {
 
   // Cors
   // Set up a whitelist and check against it:
-  const corsOptions = { origin: "http;//localhost:3000" };
+  const corsOptions = {
+    origin: process.env.NODE_ENV === 'production' ?
+      process.env.FRONT_END_URL_PROD : process.env.FRONT_END_URL_DEV
+  };
   // Then pass them to cors:
   app.use(cors(corsOptions));
 
